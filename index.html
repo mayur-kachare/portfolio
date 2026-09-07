@@ -79,6 +79,64 @@
     </div>
   </section>
 
+  <!-- AI / HERMES -->
+  <section class="section" id="ai">
+    <p class="eyebrow">AI / Gen-AI Experience</p>
+    <h2 class="section-title">Hands-on production deployment of <em>AI agents and LLM-powered automation.</em></h2>
+    <div class="chips" style="margin-bottom:24px;">
+      <span class="chip solid">Agentic AI orchestration</span>
+      <span class="chip">Multi-profile agent stack</span>
+      <span class="chip">Tool-using LLM agents</span>
+      <span class="chip">Pine Script v6</span>
+      <span class="chip">HMAC-signed webhooks</span>
+      <span class="chip">cron + systemd</span>
+      <span class="chip">SQLite ledger</span>
+    </div>
+    <div class="list">
+      <article class="row">
+        <div>
+          <div class="role">Multi-channel AI agent stack (Hermes by Nous Research)</div>
+          <div class="company">Self-hosted · Oracle Cloud free tier · 7 isolated profiles</div>
+        </div>
+        <div class="dates" style="text-align:left;">Active</div>
+        <div class="bullets"><ul>
+          <li>Designed and operate a 7-profile agent stack (master-orchestrator, IT-service, impex, social, blood-bank, personal, trading-watch) routing memos via classification rules, isolated contexts, and per-profile memory.</li>
+          <li>Channels live on Telegram and Discord with HMAC-signed webhooks, idempotency keys, secret scope per profile (`agent.secret_scope.get_secret`), and log redaction. No outbound telemetry.</li>
+          <li>Safety rails documented per profile: trading-watch is read-only (no broker), blood-bank is log-only (no SMS broadcast), personal is scheduling-only (no message-send).</li>
+          <li>Production cron: morning trading briefing (08:55 IST weekdays), weekly paper-trade review (Sun 19:30 IST), portfolio dashboard refresh (every 5 min).</li>
+          <li>Live services: TradingView webhook receiver (HMAC-signed, port 5010) → paper-trade SQLite ledger → results dashboard (port 5025) over Cloudflare Tunnel; systemd unit files for webhook / dashboard / 2 cloudflared tunnels.</li>
+          <li>Model routing via OpenRouter free tier with credential pool rotation. Prompts designed for cache stability and deterministic tool schemas.</li>
+        </ul></div>
+      </article>
+      <article class="row">
+        <div>
+          <div class="role">SAP-adjacent Gen-AI use cases (scoped / piloted)</div>
+          <div class="company">RISE with SAP · S/4HANA · BTP AI Core · Solution Manager</div>
+        </div>
+        <div class="dates" style="text-align:left;">Roadmap</div>
+        <div class="bullets"><ul>
+          <li>RISE + Joule / BTP AI Core: conversational analytics on S/4HANA CDS views for service-delivery PMs — auto-summarise incident root cause from CA-Err-Log + SM21.</li>
+          <li>Incident triage copilot: RAG over SAP Notes + KBA + customer-specific runbooks, embedded in Solution Manager as a side-panel; reduces MTTR by surfacing prior similar incidents.</li>
+          <li>Automation-of-automation: LLM-generated ABAP / Fiori change-request drafts from incident tickets, reviewed by Basis team before transport release — ~40% Tier-1 ticket time savings in pilot.</li>
+          <li>Workforce pyramid optimisation: clustering on ticket text + SLA data to flag teams with systemic skill gaps, feeding the FTE / pyramid correction governance I run today.</li>
+          <li>Observability + AI: correlating Solution Manager MAI alerts with SAP EarlyWatch Alert narratives; LLM drafts the customer-facing RCA in the customer's own language.</li>
+        </ul></div>
+      </article>
+      <article class="row">
+        <div>
+          <div class="role">Production hygiene for agentic systems</div>
+          <div class="company">Prompt caching · HMAC · secret scope · no PII to untrusted models</div>
+        </div>
+        <div class="dates" style="text-align:left;">Standard</div>
+        <div class="bullets"><ul>
+          <li>Prompt caching preserved by byte-stable system prompts and no mid-conversation tool mutation.</li>
+          <li>HMAC-SHA256 on every webhook; 60-second timestamp window; per-alert idempotency keys.</li>
+          <li>All credentials in `~/.hermes/.env` with mode 0600. No PII sent to models without explicit user consent.</li>
+        </ul></div>
+      </article>
+    </div>
+  </section>
+
   <!-- WORK -->
   <section class="section" id="work">
     <div class="section-head">
